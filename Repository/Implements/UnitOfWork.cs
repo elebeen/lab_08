@@ -7,11 +7,13 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly Hashtable _repositories;
     private readonly Context _context;
+    public IClientRepository ClientRepository { get; }
     
-    public UnitOfWork(Context context)
+    public UnitOfWork(Context context,  IClientRepository clientRepository)
     {
         _repositories = new Hashtable();
         _context = context;
+        ClientRepository = clientRepository;
     }
 
     public Task<int> SaveChanges()

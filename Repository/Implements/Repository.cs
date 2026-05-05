@@ -22,11 +22,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
         return _context.Set<TEntity>().Find(id);
     }
 
-    public TEntity FindByName(string name)
-    {
-        return _context.Set<TEntity>().FirstOrDefault(e => EF.Property<string>(e, "Name") == name);
-    }
-
     public void Add(TEntity entity)
     {
         _context.Set<TEntity>().Add(entity);
