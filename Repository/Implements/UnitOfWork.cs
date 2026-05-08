@@ -8,12 +8,20 @@ public class UnitOfWork : IUnitOfWork
     private readonly Hashtable _repositories;
     private readonly Context _context;
     public IClientRepository ClientRepository { get; }
+    public IProductRepository ProductRepository { get; }
+    public IOrderRepository OrderRepository { get; }
     
-    public UnitOfWork(Context context,  IClientRepository clientRepository)
+    public UnitOfWork(
+        Context context,  
+        IClientRepository clientRepository,
+        IProductRepository productRepository,
+        IOrderRepository orderRepository)
     {
         _repositories = new Hashtable();
         _context = context;
         ClientRepository = clientRepository;
+        ProductRepository = productRepository;
+        OrderRepository = orderRepository;
     }
 
     public Task<int> SaveChanges()

@@ -16,9 +16,30 @@ public class ClientController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Client> GetClients([FromBody]string name)
+    public IEnumerable<Client> GetClients(string name)
     {
         var x = _clientService.GetClientsByName(name);
         return x;
+    }
+
+    [HttpGet]
+    [Route("Maspedidos")]
+    public dynamic MasPedidos()
+    {
+        return _clientService.GetClientConMasPedidos();
+    }
+
+    [HttpGet]
+    [Route("clientesquecompran")]
+    public List<string> ProductosDelCliente(int id)
+    {
+        return _clientService.GetClientsByProduct(id);
+    }
+
+    [HttpGet]
+    [Route("productosvendidos")]
+    public List<string> ProductosVendidos(int id)
+    {
+        return _clientService.GetProductsByClientId(id);
     }
 }
